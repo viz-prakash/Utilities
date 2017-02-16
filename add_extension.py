@@ -4,11 +4,13 @@ import sys
 def add_extension(directory, extension):
 	files = [ f for f in os.listdir(directory) if os.path.isfile(f)]
 	for file in files:
-		if "." not in file:
-			print "renaming " + file + " to " + file + "." + extension
-			#print file[:-3]
-			#os.rename(file, file[:-3])
-			os.rename(file, file + "." + extension)
+		if "." not in file: 
+			if "." not in extension:
+				print "renaming " + file + " to " + file + "." + extension
+				os.rename(file, file + "." + extension)
+			else: 
+				print "renaming " + file + " to " + file + extension
+				os.rename(file, file + extension)
 
 def usage():
 	print "Adds passed extension to the files in given directory which already doesn't have an extension"
